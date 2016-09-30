@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import com.cocoahero.android.geojson.util.JSONUtils;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -20,6 +21,8 @@ public class Feature extends GeoJSONObject {
 
     private static final String JSON_PROPERTIES = "properties";
 
+    private static final String JSON_BBOX = "bbox";
+
     // ------------------------------------------------------------------------
     // Instance Variables
     // ------------------------------------------------------------------------
@@ -29,6 +32,8 @@ public class Feature extends GeoJSONObject {
     private Geometry mGeometry;
 
     private JSONObject mProperties;
+
+    private JSONArray mBbox;
 
     // ------------------------------------------------------------------------
     // Constructors
@@ -57,6 +62,7 @@ public class Feature extends GeoJSONObject {
         }
 
         this.mProperties = json.optJSONObject(JSON_PROPERTIES);
+        this.mBbox = json.optJSONArray(JSON_BBOX);
     }
 
     /**
@@ -132,6 +138,15 @@ public class Feature extends GeoJSONObject {
      */
     public JSONObject getProperties() {
         return this.mProperties;
+    }
+
+    /**
+     * Returns the optional bbox of this feature as JSON.
+     *
+     * @return the bbox of this feature
+     */
+    public JSONArray getBbox() {
+        return this.mBbox;
     }
 
     /**
